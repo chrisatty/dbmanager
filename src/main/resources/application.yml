@@ -1,0 +1,26 @@
+spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+spring:
+  profiles:
+    active: mysql,aws
+
+dbmanager:
+  concurrentThreads: ${CONCURRENT_THREADS:2}
+  script:
+    folder: ${SCRIPT_FOLDER:/dbscripts}
+    delete: ${SCRIPT_DELETE:true}
+  mysql:
+    host: ${MYSQL_HOST:127.0.0.1}
+    port: ${MYSQL_PORT:3306}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+  aws:
+    accessKey: ${AWS_ACCESS_KEY}
+    secretKey: ${AWS_SECRET_KEY}
+    bucket: ${AWS_BUCKET}
+    region: ${AWS_REGION:eu-west-2}
+  backup:
+    compression: ${BACKUP_COMPRESSION:gz}
+  docker:
+    socket: ${DOCKER_SOCKET:unix:///var/run/docker.sock}
+
